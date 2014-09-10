@@ -25,6 +25,8 @@ import org.json.simple.JSONObject;
 
 import java.math.BigInteger;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 final class JSONData {
 
@@ -64,6 +66,26 @@ final class JSONData {
         }
         return json;
     }
+    
+    static JSONObject accountsBalance(List<Account> accounts) {
+		JSONArray accountsDetail = new JSONArray();
+		JSONObject response = new JSONObject();
+		Iterator iter = accounts.iterator();
+		while(iter.hasNext()) {
+			JSONObject json = new JSONObject();
+			Account  acc =  (Account)iter.next();
+			json.put("account", Convert.rsAccount(acc.getId()));
+			json.put("balanceNQT", String.valueOf(acc.getBalanceNQT()));
+			json.put("unconfirmedBalanceNQT", String.valueOf(acc.getUnconfirmedBalanceNQT()));
+			json.put("effectiveBalanceNXT", acc.getEffectiveBalanceNXT());
+			json.put("forgedBalanceNQT", acc.getForgedBalanceNQT());
+			json.put("guaranteedBalanceNQT", String.valueOf(acc.getGuaranteedBalanceNQT(1440)));
+			accountsDetail.add(json);
+		}
+		response.put("accounts", accountsDetail);
+		return response;
+	}
+
 
     static JSONObject asset(Asset asset) {
         JSONObject json = new JSONObject();
