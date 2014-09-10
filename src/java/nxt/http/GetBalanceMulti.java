@@ -19,8 +19,8 @@ public final class GetBalanceMulti extends APIServlet.APIRequestHandler {
 
     @Override
     JSONStreamAware processRequest(HttpServletRequest req) throws NxtException {
-    	List<Account> accounts = ParameterParser.getAccounts(req);
-    	return JSONData.accountsBalance(accounts);
+        List<Account> accounts = ParameterParser.getAccounts(req);
+        return JSONData.accountsBalance(accounts);
     }
 
 }
