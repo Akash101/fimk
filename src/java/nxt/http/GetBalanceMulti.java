@@ -31,6 +31,7 @@ public final class GetBalanceMulti extends APIServlet.APIRequestHandler {
 			json.put("account", Convert.rsAccount(account.getId())); 
 			accountsJSONArray.add(json);
 		}
+		
 		response.put("accounts", accountsJSONArray);
 		return response;
 	}

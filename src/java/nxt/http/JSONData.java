@@ -64,6 +64,7 @@ final class JSONData {
 				json.put("guaranteedBalanceNQT", String.valueOf(account.getGuaranteedBalanceNQT(1440)));
 			}
 		}
+		
 		return json;
 	}
 
